@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { QueryRenderer, graphql } from 'react-relay';
 import { Environment, RecordSource, Store } from 'relay-runtime';
 import { RelayNetworkLayer } from 'react-relay-network-modern/lib';
-import { useQuery } from "relay-hooks";
+import { useQuery, RelayEnvironmentProvider } from "relay-hooks";
 
 const network = new RelayNetworkLayer([
   next => async req => {
@@ -40,18 +40,22 @@ const Example = () => {
   );
 };
 
+const sourceHooks = new RecordSource();
+const storeHooks = new Store(sourceHooks);
+const environmentHooks = new Environment({ network, store: storeHooks });
+
 const HooksExample = () => {
   console.log('########## with hooks NetworkLayer invocation');
   const result = useQuery({
-    environment,
     query,
     variables,
   });
 
-  console.log('########## with hooks result');
-  console.log(result);
+  console.log('########## with hooks result', result);
+  
   return null;
 };
 
 ReactDOMServer.renderToString(<Example />);
-ReactDOMServer.renderToString(<HooksExample />);
+ReactDOMServer.renderToString(<RelayEnvironmentProvider environment={environmentHooks} >
+  <HooksExample /></RelayEnvironmentProvider>);
