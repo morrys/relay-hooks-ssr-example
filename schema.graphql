@@ -1,0 +1,11 @@
+interface Node {
+    id: ID!
+}
+
+type Query {
+    node(id: ID!): Node
+}
+
+schema {
+    query: Query
+}

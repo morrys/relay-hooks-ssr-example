@@ -1,0 +1,30 @@
+{
+  "name": "relay-hooks-ssr-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.jsx",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "relay": "relay-compiler --src ./src --schema ./schema.graphql --watchman false",
+    "start": "node dist/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-relay": "^4.0.0",
+    "graphql": "^14.3.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-relay": "^4.0.0",
+    "react-relay-network-modern": "^4.0.0",
+    "relay-compiler": "^4.0.0",
+    "relay-hooks": "^0.3.0",
+    "relay-runtime": "^4.0.0",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4"
+  }
+}
